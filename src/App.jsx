@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import ParticleNetwork from './components/ParticleNetwork';
 import CareersPage from './components/CareersPage';
 
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://shivohara-backend.onrender.com/api' 
+  : 'http://localhost:5050/api';
+
 // Project Portfolio Data
 const PROJECTS = [
   {
@@ -509,7 +513,7 @@ export default function App() {
     setSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5050/api/inquiries', {
+      const response = await fetch(`${API_BASE_URL}/inquiries`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

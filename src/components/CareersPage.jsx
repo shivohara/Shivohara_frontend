@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import ParticleNetwork from './ParticleNetwork';
 
-const API_BASE_URL = 'http://localhost:5050/api';
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://shivohara-backend.onrender.com/api' 
+  : 'http://localhost:5050/api';
 
 export default function CareersPage() {
   const [jobs, setJobs] = useState([]);

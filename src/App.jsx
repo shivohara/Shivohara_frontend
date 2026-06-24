@@ -115,6 +115,23 @@ export default function App() {
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
   const [teamAnimKey, setTeamAnimKey] = useState(0);
 
+  // Dynamic Page Title & Meta Description changer for SEO
+  useEffect(() => {
+    if (view === 'careers') {
+      document.title = 'SHIVOHARA | Careers - Join Our Team';
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', 'Explore job opportunities and open career positions at SHIVOHARA Technologies. Build custom AI/ML applications, high-scale software systems, and modern digital platforms.');
+      }
+    } else {
+      document.title = 'SHIVOHARA | AI, Software & Cloud Engineering Solutions';
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', 'Premium software engineering agency specializing in custom AI/ML applications, high-scale web & mobile app development, cloud migrations, and digital transformation.');
+      }
+    }
+  }, [view]);
+
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;

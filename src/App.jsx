@@ -3,7 +3,7 @@ import ParticleNetwork from './components/ParticleNetwork';
 import CareersPage from './components/CareersPage';
 
 const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://shivohara-backend.onrender.com/api' 
+  ? 'https://shivohara-backend-1.onrender.com/api' 
   : 'http://localhost:5050/api';
 
 // Project Portfolio Data

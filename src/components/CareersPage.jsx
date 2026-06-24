@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ParticleNetwork from './ParticleNetwork';
 
 const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://shivohara-backend.onrender.com/api' 
+  ? 'https://shivohara-backend-1.onrender.com/api' 
   : 'http://localhost:5050/api';
 
 export default function CareersPage() {

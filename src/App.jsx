@@ -121,13 +121,13 @@ export default function App() {
       document.title = 'SHIVOHARA | Careers - Join Our Team';
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'Explore job opportunities and open career positions at SHIVOHARA Technologies. Build custom AI/ML applications, high-scale software systems, and modern digital platforms.');
+        metaDescription.setAttribute('content', 'Explore job opportunities and open career positions at SHIVOHARA. Join our team of experts in custom software development, QA testing, product design, and digital marketing.');
       }
     } else {
-      document.title = 'SHIVOHARA | AI, Software & Cloud Engineering Solutions';
+      document.title = 'SHIVOHARA | Custom Software, QA Testing, AI & IT Solutions';
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'Premium software engineering agency specializing in custom AI/ML applications, high-scale web & mobile app development, cloud migrations, and digital transformation.');
+        metaDescription.setAttribute('content', 'SHIVOHARA is a premium software engineering agency providing custom software development, automated QA testing, digital marketing, IT consulting, and full-lifecycle product development services.');
       }
     }
   }, [view]);

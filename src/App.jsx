@@ -107,6 +107,9 @@ const TEAM_MEMBERS = [
   { id: 6, name: "POTHIREDDY VENKATESWARA REDDY", role: "Backend Developer", desc: "Scaling data layers and building ultra-fast APIs to handle massive concurrency without sacrificing data integrity.", img: "/venky.png" }
 ];
 
+
+
+
 export default function App() {
   // --- State Hooks ---
   const [view, setView] = useState('home');
@@ -124,15 +127,21 @@ export default function App() {
         metaDescription.setAttribute('content', 'Explore job opportunities and open career positions at SHIVOHARA. Join our team of experts in custom software development, QA testing, product design, and digital marketing.');
       }
     } else {
-      document.title = 'SHIVOHARA | Custom Software, QA Testing, AI & IT Solutions';
+      document.title = 'Shivohara Technologies | Software Development Company';
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'SHIVOHARA is a premium software engineering agency providing custom software development, automated QA testing, digital marketing, IT consulting, and full-lifecycle product development services.');
+        metaDescription.setAttribute('content', 'Shivohara Technologies delivers mobile app development, web development, UI/UX design, and custom software solutions for businesses worldwide.');
       }
     }
   }, [view]);
 
+
   useEffect(() => {
+    // Clear hash on initial mount (refresh or fresh load) to always start at the homepage
+    if (window.location.hash) {
+      window.history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+
     const handleHashChange = () => {
       const hash = window.location.hash;
       if (hash === '#careers') {
@@ -164,6 +173,7 @@ export default function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -618,7 +628,7 @@ export default function App() {
       )}
 
       {view === 'home' && (
-        <main>
+        <main className="page-transition-container" key="home">
           {/* ==========================================
                Hero Section
                ========================================== */}
@@ -1336,21 +1346,6 @@ export default function App() {
                     <div className="contact-info-card-body">
                       <h4>Call Us</h4>
                       <p>+91 7981230713</p>
-                      <span className="contact-info-card-note">Mon - Fri • 9:00 AM - 6:00 PM</span>
-                    </div>
-                  </div>
-
-                  <div className="contact-info-card">
-                    <div className="contact-info-card-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                    </div>
-                    <div className="contact-info-card-body">
-                      <h4>Office Address</h4>
-                      <p style={{ fontSize: '0.92rem', lineHeight: '1.5' }}>
-                        4th Floor, OM Chambers, 648/A,<br />
-                        Indiranagar, Bangalore North,<br />
-                        Karnataka - 560038
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -1440,7 +1435,7 @@ export default function App() {
       )}
 
       {view === 'careers' && (
-        <main>
+        <main className="page-transition-container" key="careers">
           <CareersPage />
         </main>
       )}
@@ -1455,12 +1450,6 @@ export default function App() {
                   <img src="/footer_logo.png" alt="SHIVOHARA Logo" style={{ height: '65px', width: 'auto', objectFit: 'contain', borderRadius: '12px' }} />
                 </a>
                 <p style={{ fontSize: '0.88rem', lineHeight: '1.6' }}>Fusing engineering consciousness with intelligent automation. Building digital ecosystems that scale infinitely.</p>
-                <p style={{ fontSize: '0.82rem', lineHeight: '1.5', marginTop: '1.25rem', color: 'rgba(255,255,255,0.6)' }}>
-                  <strong>Office Address:</strong><br />
-                  4th Floor, OM Chambers, 648/A,<br />
-                  Indiranagar, Bangalore North,<br />
-                  Karnataka - 560038
-                </p>
               </div>
 
               {/* Column 2: Capabilities Links */}
@@ -1493,17 +1482,20 @@ export default function App() {
                 <h4>Follow us on</h4>
                 <ul className="footer-social-links" style={{ display: 'flex', flexDirection: 'row', gap: '1.25rem', marginTop: '0.5rem', listStyle: 'none', padding: 0 }}>
                   <li>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram">
+                    <a href="https://www.instagram.com/shivoharatech?igsh=MWNwd2Exbjg3NjNseA==" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Instagram">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
                     </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Twitter">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
+                    <a href="https://x.com/ShivoharaTech" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="Twitter">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                        <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                      </svg>
                     </a>
                   </li>
                   <li>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/shivohara-technologies-b17456419?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="LinkedIn">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
                     </a>
                   </li>

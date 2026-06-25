@@ -83,6 +83,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 85px;
   font-size: 16px;
 }
 
@@ -2925,6 +2926,8 @@ section {
   }
 }
 
+
+
 .contact-section {
   position: relative;
   background: var(--bg-dark);
@@ -4844,4 +4847,23 @@ select.form-input {
   margin-top: 1.5rem;
   border-top: 1px solid var(--border-color);
   padding-top: 1.5rem;
+}
+
+/* ==========================================
+   Page Fade-and-Slide Entrance Transition
+   ========================================== */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition-container {
+  animation: pageFadeIn 0.5s var(--ease-out-expo) forwards;
+  will-change: opacity, transform;
 }

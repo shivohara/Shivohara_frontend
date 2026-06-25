@@ -1,4 +1,51 @@
+# Shivohara Technologies — robots.txt
+# https://shivoharatechnologies.com
+
+# Allow all standard search engine crawlers
 User-agent: *
 Allow: /
+Disallow: /admin
 
+# Google Search Bot
+User-agent: Googlebot
+Allow: /
+
+# Google AI / SGE
+User-agent: Google-Extended
+Allow: /
+
+# OpenAI / ChatGPT Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude Crawler
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI Crawler
+User-agent: PerplexityBot
+Allow: /
+
+# Apple Bot (Siri, Apple Intelligence)
+User-agent: Applebot
+Allow: /
+
+# Microsoft / Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# Meta Crawler
+User-agent: FacebookExternalHit
+Allow: /
+
+# Cohere AI Crawler
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap location
 Sitemap: https://shivoharatechnologies.com/sitemap.xml

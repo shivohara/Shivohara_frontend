@@ -1334,8 +1334,12 @@ export default function App() {
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
                     </div>
                     <div className="contact-info-card-body">
-                      <h4>Global Remote Operations</h4>
-                      <p>Delivering solutions worldwide</p>
+                      <h4>Office Address</h4>
+                      <p style={{ fontSize: '0.92rem', lineHeight: '1.5' }}>
+                        4th Floor, OM Chambers, 648/A,<br />
+                        Indiranagar, Bangalore North,<br />
+                        Karnataka - 560038
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1440,6 +1444,12 @@ export default function App() {
                   <img src="/footer_logo.png" alt="SHIVOHARA Logo" style={{ height: '65px', width: 'auto', objectFit: 'contain', borderRadius: '12px' }} />
                 </a>
                 <p style={{ fontSize: '0.88rem', lineHeight: '1.6' }}>Fusing engineering consciousness with intelligent automation. Building digital ecosystems that scale infinitely.</p>
+                <p style={{ fontSize: '0.82rem', lineHeight: '1.5', marginTop: '1.25rem', color: 'rgba(255,255,255,0.6)' }}>
+                  <strong>Office Address:</strong><br />
+                  4th Floor, OM Chambers, 648/A,<br />
+                  Indiranagar, Bangalore North,<br />
+                  Karnataka - 560038
+                </p>
               </div>
 
               {/* Column 2: Capabilities Links */}

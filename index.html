@@ -38,6 +38,44 @@
     <!-- Preconnect to Google Fonts for performance (LCP) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured Data (Schema.org JSON-LD) for Local Business Address -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "SHIVOHARA",
+      "image": "https://shivoharatechnologies.com/favicon-512x512.png",
+      "@id": "https://shivoharatechnologies.com/#localbusiness",
+      "url": "https://shivoharatechnologies.com/",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4th Floor, OM Chambers, 648/A, Indiranagar",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560038",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.9784,
+        "longitude": 77.6408
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

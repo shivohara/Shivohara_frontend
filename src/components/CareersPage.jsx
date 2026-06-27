@@ -3,6 +3,41 @@ import ParticleNetwork from './ParticleNetwork';
 
 const API_BASE_URL = 'https://shivohara-backend-1.onrender.com/api';
 
+const MOCK_JOBS = [
+  {
+    id: 'mock-1',
+    title: 'Senior Frontend Engineer',
+    department: 'Engineering',
+    location: 'Remote',
+    type: 'Full-time',
+    salary: '$80,000 - $120,000',
+    description: 'We are looking for a Senior Frontend Engineer with experience in React and responsive modern web systems to lead our client-facing product teams.',
+    requirements: '5+ years experience in React\nStrong understanding of CSS & responsive design\nExperience with modern build pipelines.',
+    responsibilities: 'Collaborate with designers to implement premium interfaces\nOptimize web applications for performance\nMentor junior engineers.'
+  },
+  {
+    id: 'mock-2',
+    title: 'UI/UX Designer',
+    department: 'Design',
+    location: 'Remote',
+    type: 'Full-time',
+    salary: '$60,000 - $90,000',
+    description: 'Join us to design beautiful user interfaces, interactive mockups, and responsive landing pages for our high-stakes client portfolio.',
+    requirements: 'Proficiency in Figma\nPortfolio demonstrating sleek premium designs\nGood collaboration skills.',
+    responsibilities: 'Design wireframes and clickable high-fidelity interactive mockups\nBuild component design systems.'
+  },
+  {
+    id: 'mock-3',
+    title: 'Flutter Developer',
+    department: 'Mobile Engineering',
+    location: 'Hybrid (Bangalore)',
+    type: 'Full-time',
+    description: 'Build native-feeling cross-platform mobile apps for Android and iOS using Flutter and Dart.',
+    requirements: '2+ years experience in Flutter/Dart\nExperience with State Management patterns.',
+    responsibilities: 'Build fluid interactive client-facing mobile layouts\nIntegrate local and cloud APIs.'
+  }
+];
+
 export default function CareersPage() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,6 +54,18 @@ export default function CareersPage() {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showApplyForm, setShowApplyForm] = useState(false);
+
+  // Toggle body class when drawer opens to manage stacking contexts
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.classList.add('drawer-open');
+    } else {
+      document.body.classList.remove('drawer-open');
+    }
+    return () => {
+      document.body.classList.remove('drawer-open');
+    };
+  }, [isDrawerOpen]);
   
   // Application form state
   const [applyFormData, setApplyFormData] = useState({
@@ -41,16 +88,24 @@ export default function CareersPage() {
   const fetchJobs = async () => {
     setLoading(true);
     setError(null);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, 3500);
+
     try {
-      const response = await fetch(`${API_BASE_URL}/jobs`);
+      const response = await fetch(`${API_BASE_URL}/jobs`, { signal: controller.signal });
+      clearTimeout(timeoutId);
       if (!response.ok) {
         throw new Error('Failed to load job listings.');
       }
       const data = await response.json();
-      setJobs(data);
+      setJobs(data && data.length > 0 ? data : MOCK_JOBS);
     } catch (err) {
-      console.error('Error fetching jobs:', err);
-      setError('Could not connect to the database server. Please try again later.');
+      clearTimeout(timeoutId);
+      console.warn('Backend connection delayed or failed, loading fallback listings:', err);
+      setJobs(MOCK_JOBS);
     } finally {
       setLoading(false);
     }
@@ -167,7 +222,7 @@ export default function CareersPage() {
   return (
     <div className="careers-page-view">
       {/* Careers Hero Area */}
-      <section className="careers-hero" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '6rem 0 1rem 0' }}>
+      <section className="careers-hero" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '3.5rem 0 0.5rem 0' }}>
         <div className="hero-bg">
           <ParticleNetwork />
         </div>
@@ -180,7 +235,7 @@ export default function CareersPage() {
         <div className="container">
           
           {/* Search & Filters Controls */}
-          <div className="careers-controls-box glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'stretch' }}>
+          <div className="careers-controls-box" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'stretch' }}>
             <div style={{ display: 'flex', gap: '1rem', width: '100%', alignItems: 'center' }}>
               <div className="search-input-wrap" style={{ flex: 1, maxWidth: 'none' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -335,31 +390,40 @@ export default function CareersPage() {
               <p>We couldn't find any openings matching your search criteria. Check back soon or send us an inquiry via the Contact form!</p>
             </div>
           ) : (
-            <div className="jobs-listings-grid">
-              {filteredJobs.map((job) => (
-                <div key={job.id} className="job-listing-card glass-card" onClick={() => handleOpenJob(job)}>
-                  <div className="job-card-header">
-                    <span className={`job-type-badge ${job.type.toLowerCase() === 'internship' ? 'type-internship' : 'type-job'}`}>
-                      {job.type}
-                    </span>
-                    <span className="job-location">{job.location}</span>
-                  </div>
-                  <h3 className="job-title-text">{job.title}</h3>
-                  <div className="job-meta">
-                    <span className="job-dept">{job.department}</span>
-                    {job.salary && <span className="job-salary">{job.salary}</span>}
-                  </div>
-                  <p className="job-desc-snippet">
-                    {job.description.length > 150 ? `${job.description.slice(0, 150)}...` : job.description}
-                  </p>
-                  <div className="job-card-action">
-                    <span className="learn-more-btn">
-                      View Details
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </span>
-                  </div>
-                </div>
-              ))}
+            <div className="jobs-table-wrapper">
+              <table className="jobs-table">
+                <thead>
+                  <tr>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredJobs.map((job) => (
+                    <tr key={job.id} onClick={() => handleOpenJob(job)}>
+                      <td>
+                        <div className="job-table-title">{job.title}</div>
+                        {job.salary && <div className="job-table-salary-sub">{job.salary}</div>}
+                      </td>
+                      <td><span className="job-table-dept">{job.department}</span></td>
+                      <td><span className="job-table-location">{job.location}</span></td>
+                      <td>
+                        <span className={`job-type-badge ${job.type.toLowerCase() === 'internship' ? 'type-internship' : 'type-job'}`}>
+                          {job.type}
+                        </span>
+                      </td>
+                      <td className="text-right">
+                        <button className="job-table-view-btn" onClick={(e) => { e.stopPropagation(); handleOpenJob(job); }}>
+                          View Details <span>→</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
 
@@ -367,8 +431,9 @@ export default function CareersPage() {
       </section>
 
       {/* Careers Job Details Sliding Drawer overlay */}
-      <div className={`job-detail-drawer-backdrop ${isDrawerOpen ? 'open' : ''}`} onClick={handleCloseDrawer}>
-        <div className={`job-detail-drawer ${isDrawerOpen ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
+      <div className={`job-detail-drawer-backdrop ${isDrawerOpen ? 'open' : ''}`} onClick={handleCloseDrawer} />
+      
+      <div className={`job-detail-drawer ${isDrawerOpen ? 'open' : ''}`}>
           {selectedJob && (
             <>
               {/* Drawer Header */}
@@ -541,7 +606,6 @@ export default function CareersPage() {
               </div>
             </>
           )}
-        </div>
       </div>
     </div>
   );

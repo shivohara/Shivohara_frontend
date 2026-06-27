@@ -4542,6 +4542,67 @@ select.form-input option {
   animation: spin 1s infinite linear;
 }
 
+/* Skeleton Loader Styles */
+.skeleton-row td {
+  cursor: default !important;
+}
+
+.skeleton-text {
+  height: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading-skeleton 1.5s infinite ease-in-out;
+  border-radius: 6px;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 18px;
+}
+
+.skeleton-subtitle {
+  width: 45%;
+  height: 12px;
+  margin-top: 8px;
+}
+
+.skeleton-dept {
+  width: 55%;
+  height: 14px;
+}
+
+.skeleton-location {
+  width: 45%;
+  height: 14px;
+}
+
+.skeleton-badge {
+  width: 85px;
+  height: 22px;
+  border-radius: 20px;
+}
+
+.skeleton-btn {
+  width: 105px;
+  height: 32px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+@keyframes loading-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 .careers-error-box,
 .careers-empty-box {
   display: flex;

@@ -372,9 +372,40 @@ export default function CareersPage() {
 
           {/* Job listings lists */}
           {loading ? (
-            <div className="careers-loading">
-              <div className="loading-spinner"></div>
-              <p>Fetching active openings from database...</p>
+            <div className="jobs-table-wrapper skeleton-wrapper">
+              <table className="jobs-table">
+                <thead>
+                  <tr>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[1, 2, 3].map((index) => (
+                    <tr key={`skeleton-${index}`} className="skeleton-row">
+                      <td>
+                        <div className="skeleton-text skeleton-title"></div>
+                        <div className="skeleton-text skeleton-subtitle"></div>
+                      </td>
+                      <td>
+                        <div className="skeleton-text skeleton-dept"></div>
+                      </td>
+                      <td>
+                        <div className="skeleton-text skeleton-location"></div>
+                      </td>
+                      <td>
+                        <div className="skeleton-text skeleton-badge"></div>
+                      </td>
+                      <td className="text-right">
+                        <div className="skeleton-text skeleton-btn"></div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           ) : error ? (
             <div className="careers-error-box glass-card">

@@ -740,6 +740,12 @@ section {
   right: 0;
 }
 
+@media (max-width: 991px) {
+  .tech-circuit {
+    display: none;
+  }
+}
+
 /* Hide paths initially */
 .tech-circuit path {
   stroke-dasharray: 400;
@@ -1364,6 +1370,14 @@ section {
   justify-content: flex-start;
 }
 
+@media (max-width: 767px) {
+  .bento-card {
+    padding: 1.5rem;
+    border-radius: 24px;
+    min-height: auto;
+  }
+}
+
 .bento-card:hover {
   transform: translateY(-10px) scale(1.01);
   box-shadow: 0 30px 60px rgba(139, 92, 246, 0.1), 0 10px 20px rgba(0, 0, 0, 0.04);
@@ -1915,6 +1929,24 @@ section {
   transform: translateY(-2px);
   border-color: rgba(139, 92, 246, 0.15);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 991px) {
+  .saas-workflow-board {
+    flex-direction: column;
+    max-width: 100%;
+    gap: 0;
+    margin-top: 1rem;
+  }
+
+  .workflow-connector {
+    transform: rotate(90deg);
+    margin-block: 8px;
+  }
+
+  .workflow-card-node {
+    width: 160px;
+  }
 }
 
 /* ==========================================
@@ -3952,6 +3984,15 @@ select.form-input {
   letter-spacing: 0.15em;
 }
 
+@media (max-width: 768px) {
+  .footer-big-brand {
+    font-size: clamp(1.8rem, 8vw, 4rem);
+  }
+  .footer-big-brand.animate-up {
+    letter-spacing: 0.08em;
+  }
+}
+
 /* Footer Bottom copyright and actions */
 .footer-bottom {
   display: flex;
@@ -5527,5 +5568,11 @@ body.drawer-open .site-header {
     width: 100%;
     justify-content: center;
     padding: 10px 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-capabilities {
+    display: none !important;
   }
 }

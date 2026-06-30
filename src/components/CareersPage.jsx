@@ -1,42 +1,6 @@
 import { useState, useEffect } from 'react';
-import ParticleNetwork from './ParticleNetwork';
 
 const API_BASE_URL = 'https://shivohara-backend-1.onrender.com/api';
-
-const MOCK_JOBS = [
-  {
-    id: 'mock-1',
-    title: 'Senior Frontend Engineer',
-    department: 'Engineering',
-    location: 'Remote',
-    type: 'Full-time',
-    salary: '$80,000 - $120,000',
-    description: 'We are looking for a Senior Frontend Engineer with experience in React and responsive modern web systems to lead our client-facing product teams.',
-    requirements: '5+ years experience in React\nStrong understanding of CSS & responsive design\nExperience with modern build pipelines.',
-    responsibilities: 'Collaborate with designers to implement premium interfaces\nOptimize web applications for performance\nMentor junior engineers.'
-  },
-  {
-    id: 'mock-2',
-    title: 'UI/UX Designer',
-    department: 'Design',
-    location: 'Remote',
-    type: 'Full-time',
-    salary: '$60,000 - $90,000',
-    description: 'Join us to design beautiful user interfaces, interactive mockups, and responsive landing pages for our high-stakes client portfolio.',
-    requirements: 'Proficiency in Figma\nPortfolio demonstrating sleek premium designs\nGood collaboration skills.',
-    responsibilities: 'Design wireframes and clickable high-fidelity interactive mockups\nBuild component design systems.'
-  },
-  {
-    id: 'mock-3',
-    title: 'Flutter Developer',
-    department: 'Mobile Engineering',
-    location: 'Hybrid (Bangalore)',
-    type: 'Full-time',
-    description: 'Build native-feeling cross-platform mobile apps for Android and iOS using Flutter and Dart.',
-    requirements: '2+ years experience in Flutter/Dart\nExperience with State Management patterns.',
-    responsibilities: 'Build fluid interactive client-facing mobile layouts\nIntegrate local and cloud APIs.'
-  }
-];
 
 export default function CareersPage() {
   const [jobs, setJobs] = useState([]);
@@ -101,11 +65,12 @@ export default function CareersPage() {
         throw new Error('Failed to load job listings.');
       }
       const data = await response.json();
-      setJobs(data && data.length > 0 ? data : MOCK_JOBS);
+      setJobs(data && data.length > 0 ? data : []);
     } catch (err) {
       clearTimeout(timeoutId);
-      console.warn('Backend connection delayed or failed, loading fallback listings:', err);
-      setJobs(MOCK_JOBS);
+      console.error('Backend connection failed:', err);
+      setJobs([]);
+      setError(err.message || 'Failed to load job listings.');
     } finally {
       setLoading(false);
     }
@@ -224,7 +189,6 @@ export default function CareersPage() {
       {/* Careers Hero Area */}
       <section className="careers-hero" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '3.5rem 0 0.5rem 0' }}>
         <div className="hero-bg">
-          <ParticleNetwork />
         </div>
         <div className="container">
         </div>

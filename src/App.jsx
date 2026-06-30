@@ -1341,7 +1341,6 @@ export default function App() {
                       <img src={product.image} alt={product.title} className="product-hero-img" />
                     </div>
                     <div className="product-hero-content">
-                      <span className="product-badge">Shivohara Product</span>
                       <h3 className="product-title">{product.title}</h3>
                       <p className="product-tagline-text">{product.tagline}</p>
                       <p className="product-description">{product.description}</p>
@@ -1590,7 +1589,7 @@ export default function App() {
               </div>
 
               {/* Column 2: Capabilities Links */}
-              <div className="footer-nav">
+              <div className="footer-nav footer-capabilities">
                 <h4>Capabilities</h4>
                 <ul>
                   <li><a href="#services">Software Engineering</a></li>

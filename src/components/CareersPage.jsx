@@ -410,13 +410,8 @@ export default function CareersPage() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', marginTop: '0.2rem' }}>
                           {job.salary && <div className="job-table-salary-sub">{job.salary}</div>}
                           {job.deadline && job.deadline.trim() !== '' && (
-                            <div style={{ fontSize: '0.75rem', color: (job.deadline_completed === true || job.deadline_completed === 'true' || job.deadline_completed === 1) ? 'var(--accent-orange)' : 'var(--text-muted)' }}>
+                            <div style={{ fontSize: '0.75rem', color: (job.deadline_completed === true || job.deadline_completed === 'true' || job.deadline_completed === 1) ? '#ef4444' : 'var(--text-muted)' }}>
                               📅 Apply by: {job.deadline} {(job.deadline_completed === true || job.deadline_completed === 'true' || job.deadline_completed === 1) && ' (Closed)'}
-                            </div>
-                          )}
-                          {job.skills && job.skills.trim() !== '' && (
-                            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                              🛠️ Skills: {job.skills}
                             </div>
                           )}
                         </div>
@@ -432,9 +427,9 @@ export default function CareersPage() {
                         <div className="job-row-actions">
                           {(job.deadline_completed === true || job.deadline_completed === 'true' || job.deadline_completed === 1) ? (
                             <span className="deadline-completed-badge" style={{
-                              color: 'var(--accent-orange)',
-                              border: '1px solid var(--accent-orange)',
-                              background: 'rgba(255, 87, 34, 0.08)',
+                              color: '#ef4444',
+                              border: '1px solid rgba(239, 68, 68, 0.3)',
+                              background: 'rgba(239, 68, 68, 0.05)',
                               padding: '0.35rem 0.75rem',
                               borderRadius: '20px',
                               fontSize: '0.75rem',

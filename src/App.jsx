@@ -913,7 +913,7 @@ export default function App() {
               <div className="ai-bento-grid" ref={capabilitiesGridRef} onScroll={handleCapabilityScroll}>
 
                 {/* Card 1: AI and ML Applications (Wide) */}
-                <div className="bento-card bento-card-wide ai-lab-animate">
+                <div className={`bento-card bento-card-wide ai-lab-animate ${activeCapabilityIndex === 0 ? 'active-slide' : ''}`}>
                   <div className="bento-card-glow"></div>
                   <div className="bento-card-content-wrap">
                     <div className="bento-card-text">
@@ -947,7 +947,7 @@ export default function App() {
                 </div>
 
                 {/* Card 2: AI & ML Projects (Narrow) */}
-                <div className="bento-card ai-lab-animate">
+                <div className={`bento-card ai-lab-animate ${activeCapabilityIndex === 1 ? 'active-slide' : ''}`}>
                   <div className="bento-card-glow"></div>
                   <div className="bento-card-content-wrap">
                     <div className="bento-card-text">
@@ -992,7 +992,7 @@ export default function App() {
                 </div>
 
                 {/* Card 3: Data Science Projects (Narrow) */}
-                <div className="bento-card ai-lab-animate">
+                <div className={`bento-card ai-lab-animate ${activeCapabilityIndex === 2 ? 'active-slide' : ''}`}>
                   <div className="bento-card-glow"></div>
                   <div className="bento-card-content-wrap">
                     <div className="bento-card-text">
@@ -1040,7 +1040,7 @@ export default function App() {
                 </div>
 
                 {/* Card 4: AI Automation (Wide) */}
-                <div className="bento-card bento-card-wide ai-lab-animate">
+                <div className={`bento-card bento-card-wide ai-lab-animate ${activeCapabilityIndex === 3 ? 'active-slide' : ''}`}>
                   <div className="bento-card-glow"></div>
                   <div className="bento-card-content-wrap">
                     <div className="bento-card-text">

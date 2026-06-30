@@ -1272,8 +1272,15 @@ section {
 .ai-bento-grid>.bento-card {
   flex: 0 0 85vw;
   scroll-snap-align: center;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
+  transform: scale(0.92);
+  opacity: 0.65;
+  transition: transform 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
+  will-change: transform, opacity;
+}
+
+.ai-bento-grid>.bento-card.active-slide {
+  transform: scale(1);
+  opacity: 1;
 }
 
 /* Dots indicator for mobile view capabilities grid */
@@ -1321,6 +1328,8 @@ section {
 
   .ai-bento-grid>.bento-card {
     flex: auto;
+    transform: none !important;
+    opacity: 1 !important;
   }
 
   .capabilities-dots {

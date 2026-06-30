@@ -4708,13 +4708,13 @@ body.drawer-open .site-header {
 .job-detail-drawer {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 600px;
+  max-width: 100% !important;
   background: var(--bg-card);
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.08);
-  border-left: 1px solid var(--border-color);
+  box-shadow: none;
   z-index: 2001;
   transform: translateX(100%);
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -4722,10 +4722,11 @@ body.drawer-open .site-header {
   flex-direction: column;
 }
 
-@media (max-width: 767px) {
-  .job-detail-drawer {
-    max-width: 100%;
-  }
+.drawer-inner-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding-inline: 1.5rem;
 }
 
 .job-detail-drawer.open {
@@ -5533,7 +5534,7 @@ body.drawer-open .site-header {
   border-radius: 20px;
   background: var(--accent-cyan);
   border: 1px solid var(--accent-cyan);
-  color: #000000;
+  color: #ffffff !important;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
@@ -5542,7 +5543,7 @@ body.drawer-open .site-header {
 
 .job-table-apply-btn:hover {
   background: transparent;
-  color: var(--accent-cyan);
+  color: #ffffff !important;
   border-color: var(--accent-cyan);
 }
 

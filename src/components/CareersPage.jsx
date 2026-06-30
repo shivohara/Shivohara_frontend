@@ -428,10 +428,11 @@ export default function CareersPage() {
                       </td>
                       <td className="text-right">
                         <div className="job-row-actions">
-                          <button className="job-table-view-btn" onClick={(e) => { e.stopPropagation(); handleOpenJob(job, false); }}>
-                            View Details <span>→</span>
-                          </button>
-                          {!job.deadline_completed && (
+                          {job.deadline_completed ? (
+                            <span style={{ color: 'var(--accent-orange)', fontSize: '0.85rem', fontWeight: 600, paddingRight: '0.5rem' }}>
+                              Closed
+                            </span>
+                          ) : (
                             <button className="job-table-apply-btn" onClick={(e) => { e.stopPropagation(); handleOpenJob(job, true); }}>
                               Apply Now
                             </button>
@@ -456,41 +457,66 @@ export default function CareersPage() {
             <>
               {/* Drawer Header */}
               <div className="drawer-header-wrapper">
-                <div className="drawer-header">
-                  <div>
-                    <span className={`job-type-badge ${selectedJob.type.toLowerCase() === 'internship' ? 'type-internship' : 'type-job'}`}>
-                      {selectedJob.type}
-                    </span>
-                    <span className="job-location" style={{ marginLeft: '1rem' }}>{selectedJob.location}</span>
-                    <h2 className="drawer-job-title" style={{ marginTop: '0.5rem' }}>{selectedJob.title}</h2>
-                    <p className="drawer-job-meta">
-                      <strong>{selectedJob.department}</strong> {selectedJob.salary ? `• ${selectedJob.salary}` : ''}
-                    </p>
-                    {selectedJob.deadline && (
-                      <p className="drawer-job-deadline" style={{ fontSize: '0.85rem', color: selectedJob.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)', marginTop: '0.4rem', fontWeight: 500 }}>
-                        📅 Apply by: {selectedJob.deadline} {selectedJob.deadline_completed && ' (Applications Closed)'}
-                      </p>
-                    )}
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    {!selectedJob.deadline_completed && !showApplyForm && (
-                      <button 
-                        className="btn btn-primary"
-                        onClick={() => setShowApplyForm(true)}
-                        style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
-                      >
-                        Apply Now
-                      </button>
-                    )}
-                    <button className="drawer-close-btn" onClick={handleCloseDrawer} aria-label="Close details">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <div className="drawer-inner-container">
+                  <div className="drawer-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1.25rem', paddingInline: 0, paddingBlock: '2rem 1.5rem' }}>
+                    <button 
+                      className="back-to-jobs-btn" 
+                      onClick={handleCloseDrawer} 
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        color: '#ffffff',
+                        padding: '0.5rem 1.25rem',
+                        borderRadius: '20px',
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.6rem',
+                        fontSize: '0.88rem',
+                        fontWeight: 600,
+                        transition: 'all 0.2s ease',
+                        outline: 'none'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.background = '#ffffff';
+                        e.currentTarget.style.color = '#000000';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                        e.currentTarget.style.color = '#ffffff';
+                      }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                      </svg>
+                      Back to Positions
                     </button>
+
+                    <div style={{ width: '100%' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                        <span className={`job-type-badge ${selectedJob.type.toLowerCase() === 'internship' ? 'type-internship' : 'type-job'}`}>
+                          {selectedJob.type}
+                        </span>
+                        <span className="job-location" style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{selectedJob.location}</span>
+                      </div>
+                      <h2 className="drawer-job-title" style={{ marginTop: '0.75rem', fontSize: '1.8rem' }}>{selectedJob.title}</h2>
+                      <p className="drawer-job-meta" style={{ marginTop: '0.35rem' }}>
+                        <strong>{selectedJob.department}</strong> {selectedJob.salary ? `• ${selectedJob.salary}` : ''}
+                      </p>
+                      {selectedJob.deadline && selectedJob.deadline.trim() !== '' && (
+                        <p className="drawer-job-deadline" style={{ fontSize: '0.88rem', color: selectedJob.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)', marginTop: '0.5rem', fontWeight: 500 }}>
+                          📅 Apply by: {selectedJob.deadline} {selectedJob.deadline_completed && ' (Applications Closed)'}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Drawer Scrollable Content */}
               <div className="drawer-content">
+                <div className="drawer-inner-container">
                 <div className="job-details-block">
                   <h3>About the Role</h3>
                   <p>{selectedJob.description}</p>
@@ -672,6 +698,7 @@ export default function CareersPage() {
                   )}
                 </div>
               </div>
+            </div>
             </>
           )}
       </div>

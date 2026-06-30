@@ -1576,7 +1576,7 @@ export default function App() {
         </main>
       )}
 
-      {view !== 'admin' && (
+      {view !== 'admin' && view !== 'careers' && (
         <footer className="site-footer" style={{ paddingBottom: '0' }}>
           <div className="container">
             <div className="footer-grid">

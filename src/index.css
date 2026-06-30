@@ -1272,14 +1272,13 @@ section {
 .ai-bento-grid>.bento-card {
   flex: 0 0 85vw;
   scroll-snap-align: center;
-  transform: scale(0.92);
-  opacity: 0.65;
-  transition: transform 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
-  will-change: transform, opacity;
+  transform: none;
+  opacity: 1;
+  transition: none;
 }
 
 .ai-bento-grid>.bento-card.active-slide {
-  transform: scale(1);
+  transform: none;
   opacity: 1;
 }
 
@@ -4724,9 +4723,14 @@ body.drawer-open .site-header {
 
 .drawer-inner-container {
   width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
-  padding-inline: 1.5rem;
+  max-width: 100% !important;
+  padding-inline: 4rem;
+}
+
+@media (max-width: 767px) {
+  .drawer-inner-container {
+    padding-inline: 1.5rem;
+  }
 }
 
 .job-detail-drawer.open {

@@ -409,12 +409,12 @@ export default function CareersPage() {
                         <div className="job-table-title">{job.title}</div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', marginTop: '0.2rem' }}>
                           {job.salary && <div className="job-table-salary-sub">{job.salary}</div>}
-                          {job.deadline && (
+                          {job.deadline && job.deadline.trim() !== '' && (
                             <div style={{ fontSize: '0.75rem', color: job.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)' }}>
                               📅 Apply by: {job.deadline} {job.deadline_completed && ' (Closed)'}
                             </div>
                           )}
-                          {job.skills && (
+                          {job.skills && job.skills.trim() !== '' && (
                             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                               🛠️ Skills: {job.skills}
                             </div>
@@ -457,10 +457,11 @@ export default function CareersPage() {
       <div className={`job-detail-drawer ${isDrawerOpen ? 'open' : ''}`}>
           {selectedJob && (
             <>
-              {/* Drawer Header */}
-              <div className="drawer-header-wrapper">
+              {/* Drawer Scrollable Content */}
+              <div className="drawer-content" style={{ paddingTop: '3.5rem' }}>
                 <div className="drawer-inner-container">
-                  <div className="drawer-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '1.25rem', paddingInline: 0, paddingBlock: '2rem 1.5rem' }}>
+                  {/* Dedicated Back Button Row (Side Top) */}
+                  <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'flex-start' }}>
                     <button 
                       className="back-to-jobs-btn" 
                       onClick={handleCloseDrawer} 
@@ -492,37 +493,37 @@ export default function CareersPage() {
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                       </svg>
-                      Back to Positions
+                      Back
                     </button>
-
-                    <div style={{ width: '100%' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-                        <span className={`job-type-badge ${selectedJob.type.toLowerCase() === 'internship' ? 'type-internship' : 'type-job'}`}>
-                          {selectedJob.type}
-                        </span>
-                        <span className="job-location" style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{selectedJob.location}</span>
-                      </div>
-                      <h2 className="drawer-job-title" style={{ marginTop: '0.75rem', fontSize: '1.8rem' }}>{selectedJob.title}</h2>
-                      <p className="drawer-job-meta" style={{ marginTop: '0.35rem' }}>
-                        <strong>{selectedJob.department}</strong> {selectedJob.salary ? `• ${selectedJob.salary}` : ''}
-                      </p>
-                      {selectedJob.deadline && selectedJob.deadline.trim() !== '' && (
-                        <p className="drawer-job-deadline" style={{ fontSize: '0.88rem', color: selectedJob.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)', marginTop: '0.5rem', fontWeight: 500 }}>
-                          📅 Apply by: {selectedJob.deadline} {selectedJob.deadline_completed && ' (Applications Closed)'}
-                        </p>
-                      )}
-                    </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Drawer Scrollable Content */}
-              <div className="drawer-content">
-                <div className="drawer-inner-container">
-                <div className="job-details-block">
-                  <h3>About the Role</h3>
-                  <p>{selectedJob.description}</p>
-                </div>
+                  {/* Job Title & Meta block inside content */}
+                  <div className="job-details-block" style={{ marginBottom: '2.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                      <span className={`job-type-badge ${selectedJob.type.toLowerCase() === 'internship' ? 'type-internship' : 'type-job'}`}>
+                        {selectedJob.type}
+                      </span>
+                      <span className="job-location" style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{selectedJob.location}</span>
+                    </div>
+
+                    <h2 className="drawer-job-title" style={{ fontSize: '2.2rem', fontWeight: 800, lineHeight: 1.2, color: 'var(--text-primary)', margin: '0.5rem 0 0' }}>
+                      {selectedJob.title}
+                    </h2>
+
+                    <p className="drawer-job-meta" style={{ marginTop: '0.5rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>
+                      <strong>{selectedJob.department}</strong> {selectedJob.salary ? `• ${selectedJob.salary}` : ''}
+                    </p>
+                    {selectedJob.deadline && selectedJob.deadline.trim() !== '' && (
+                      <p className="drawer-job-deadline" style={{ fontSize: '0.88rem', color: selectedJob.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)', marginTop: '0.6rem', fontWeight: 500 }}>
+                        📅 Apply by: {selectedJob.deadline} {selectedJob.deadline_completed && ' (Applications Closed)'}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="job-details-block">
+                    <h3>About the Role</h3>
+                    <p>{selectedJob.description}</p>
+                  </div>
 
                 {selectedJob.requirements && (
                   <div className="job-details-block">

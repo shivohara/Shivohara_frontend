@@ -18,6 +18,7 @@ export default function CareersPage() {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showApplyForm, setShowApplyForm] = useState(false);
+  const [isDirectApply, setIsDirectApply] = useState(false);
 
   // Toggle body class when drawer opens to manage stacking contexts
   useEffect(() => {
@@ -84,6 +85,7 @@ export default function CareersPage() {
     setSelectedJob(job);
     setIsDrawerOpen(true);
     setShowApplyForm(autoApply);
+    setIsDirectApply(autoApply);
     setSubmitSuccess(false);
     setSubmitError(null);
     setResumeFile(null);
@@ -463,9 +465,9 @@ export default function CareersPage() {
                       className="back-to-jobs-btn" 
                       onClick={handleCloseDrawer} 
                       style={{
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        color: '#ffffff',
+                        background: 'transparent',
+                        border: '1px solid var(--border-color)',
+                        color: 'var(--text-primary)',
                         padding: '0.5rem 1.25rem',
                         borderRadius: '20px',
                         cursor: 'pointer',
@@ -478,12 +480,12 @@ export default function CareersPage() {
                         outline: 'none'
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.background = '#ffffff';
-                        e.currentTarget.style.color = '#000000';
+                        e.currentTarget.style.background = 'var(--text-primary)';
+                        e.currentTarget.style.color = 'var(--bg-card)';
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                        e.currentTarget.style.color = '#ffffff';
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.color = 'var(--text-primary)';
                       }}
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -679,10 +681,10 @@ export default function CareersPage() {
                             <button 
                               type="button" 
                               className="btn btn-secondary" 
-                              onClick={() => setShowApplyForm(false)}
+                              onClick={() => isDirectApply ? handleCloseDrawer() : setShowApplyForm(false)}
                               disabled={submitting}
                             >
-                              Cancel
+                              {isDirectApply ? 'Back to Positions' : 'Cancel'}
                             </button>
                             <button 
                               type="submit" 

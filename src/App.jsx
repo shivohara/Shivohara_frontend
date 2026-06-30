@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import ParticleNetwork from './components/ParticleNetwork';
 import CareersPage from './components/CareersPage';
 
-const API_BASE_URL = 'https://shivohara-backend-1.onrender.com/api';
+const API_BASE_URL = 'https://shivohara-backend.vercel.app/api';
 
 // Project Portfolio Data — Our Works (Client Projects)
 const PROJECTS = [

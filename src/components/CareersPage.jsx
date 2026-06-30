@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://shivohara-backend-1.onrender.com/api';
+const API_BASE_URL = 'https://shivohara-backend.vercel.app/api';
 
 export default function CareersPage() {
   const [jobs, setJobs] = useState([]);

@@ -5517,6 +5517,35 @@ body.drawer-open .site-header {
   transform: translateX(3px);
 }
 
+.job-row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.job-table-apply-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  color: #000000;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.job-table-apply-btn:hover {
+  background: transparent;
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+}
+
 .text-right {
   text-align: right;
 }
@@ -5573,8 +5602,16 @@ body.drawer-open .site-header {
     padding-top: 0.85rem !important;
   }
   
-  .job-table-view-btn {
+  .job-row-actions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.6rem;
     width: 100%;
+  }
+
+  .job-table-view-btn,
+  .job-table-apply-btn {
+    width: 100% !important;
     justify-content: center;
     padding: 10px 18px;
   }

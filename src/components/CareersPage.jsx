@@ -80,10 +80,10 @@ export default function CareersPage() {
     }
   };
 
-  const handleOpenJob = (job) => {
+  const handleOpenJob = (job, autoApply = false) => {
     setSelectedJob(job);
     setIsDrawerOpen(true);
-    setShowApplyForm(false);
+    setShowApplyForm(autoApply);
     setSubmitSuccess(false);
     setSubmitError(null);
     setResumeFile(null);
@@ -427,9 +427,16 @@ export default function CareersPage() {
                         </span>
                       </td>
                       <td className="text-right">
-                        <button className="job-table-view-btn" onClick={(e) => { e.stopPropagation(); handleOpenJob(job); }}>
-                          View Details <span>→</span>
-                        </button>
+                        <div className="job-row-actions">
+                          <button className="job-table-view-btn" onClick={(e) => { e.stopPropagation(); handleOpenJob(job, false); }}>
+                            View Details <span>→</span>
+                          </button>
+                          {!job.deadline_completed && (
+                            <button className="job-table-apply-btn" onClick={(e) => { e.stopPropagation(); handleOpenJob(job, true); }}>
+                              Apply Now
+                            </button>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -465,9 +472,20 @@ export default function CareersPage() {
                       </p>
                     )}
                   </div>
-                  <button className="drawer-close-btn" onClick={handleCloseDrawer} aria-label="Close details">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  </button>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    {!selectedJob.deadline_completed && !showApplyForm && (
+                      <button 
+                        className="btn btn-primary"
+                        onClick={() => setShowApplyForm(true)}
+                        style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
+                      >
+                        Apply Now
+                      </button>
+                    )}
+                    <button className="drawer-close-btn" onClick={handleCloseDrawer} aria-label="Close details">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                  </div>
                 </div>
               </div>
 

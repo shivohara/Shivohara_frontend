@@ -56,7 +56,7 @@ export default function CareersPage() {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
       controller.abort();
-    }, 3500);
+    }, 30000); // 30 seconds timeout to allow Render free tier database to spin up on cold start
 
     try {
       const response = await fetch(`${API_BASE_URL}/jobs`, { signal: controller.signal });
@@ -70,7 +70,11 @@ export default function CareersPage() {
       clearTimeout(timeoutId);
       console.error('Backend connection failed:', err);
       setJobs([]);
-      setError(err.message || 'Failed to load job listings.');
+      if (err.name === 'AbortError') {
+        setError('Connection timed out. The server is taking longer than expected to respond.');
+      } else {
+        setError('We encountered a temporary connection issue. Please check your internet connection or try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -373,8 +377,8 @@ export default function CareersPage() {
             </div>
           ) : error ? (
             <div className="careers-error-box glass-card">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" strokeWidth="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-              <h3>Database Connection Error</h3>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <h3>Unable to Load Job Listings</h3>
               <p>{error}</p>
               <button className="btn btn-secondary" onClick={fetchJobs} style={{ marginTop: '1rem' }}>Retry Connection</button>
             </div>

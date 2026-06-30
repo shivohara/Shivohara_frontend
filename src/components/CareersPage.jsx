@@ -405,7 +405,19 @@ export default function CareersPage() {
                     <tr key={job.id} onClick={() => handleOpenJob(job)}>
                       <td>
                         <div className="job-table-title">{job.title}</div>
-                        {job.salary && <div className="job-table-salary-sub">{job.salary}</div>}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', marginTop: '0.2rem' }}>
+                          {job.salary && <div className="job-table-salary-sub">{job.salary}</div>}
+                          {job.deadline && (
+                            <div style={{ fontSize: '0.75rem', color: job.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)' }}>
+                              📅 Apply by: {job.deadline} {job.deadline_completed && ' (Closed)'}
+                            </div>
+                          )}
+                          {job.skills && (
+                            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                              🛠️ Skills: {job.skills}
+                            </div>
+                          )}
+                        </div>
                       </td>
                       <td><span className="job-table-dept">{job.department}</span></td>
                       <td><span className="job-table-location">{job.location}</span></td>
@@ -447,6 +459,11 @@ export default function CareersPage() {
                     <p className="drawer-job-meta">
                       <strong>{selectedJob.department}</strong> {selectedJob.salary ? `• ${selectedJob.salary}` : ''}
                     </p>
+                    {selectedJob.deadline && (
+                      <p className="drawer-job-deadline" style={{ fontSize: '0.85rem', color: selectedJob.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)', marginTop: '0.4rem', fontWeight: 500 }}>
+                        📅 Apply by: {selectedJob.deadline} {selectedJob.deadline_completed && ' (Applications Closed)'}
+                      </p>
+                    )}
                   </div>
                   <button className="drawer-close-btn" onClick={handleCloseDrawer} aria-label="Close details">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -472,6 +489,29 @@ export default function CareersPage() {
                   </div>
                 )}
 
+                {selectedJob.skills && (
+                  <div className="job-details-block">
+                    <h3>Preferred Skills</h3>
+                    <div className="drawer-skills-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.5rem' }}>
+                      {selectedJob.skills.split(',').map((skill, idx) => (
+                        <span 
+                          key={idx} 
+                          style={{ 
+                            background: 'rgba(255, 255, 255, 0.05)', 
+                            border: '1px solid rgba(255, 255, 255, 0.1)', 
+                            borderRadius: '4px', 
+                            padding: '0.25rem 0.6rem', 
+                            fontSize: '0.82rem',
+                            color: 'var(--text-primary)'
+                          }}
+                        >
+                          {skill.trim()}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {selectedJob.responsibilities && (
                   <div className="job-details-block">
                     <h3>Key Responsibilities</h3>
@@ -485,7 +525,18 @@ export default function CareersPage() {
 
                 {/* Application Section */}
                 <div className="drawer-apply-box">
-                  {!showApplyForm ? (
+                  {selectedJob.deadline_completed ? (
+                    <div className="apply-closed-box" style={{ 
+                      border: '1px dashed var(--accent-orange)', 
+                      borderRadius: '6px', 
+                      padding: '1.25rem', 
+                      textAlign: 'center', 
+                      background: 'rgba(239, 68, 68, 0.03)' 
+                    }}>
+                      <h4 style={{ color: 'var(--accent-orange)', margin: 0, fontSize: '1rem', fontWeight: 600 }}>Applications are Closed</h4>
+                      <p style={{ margin: '0.4rem 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>The deadline for this position has passed and we are no longer accepting new submissions.</p>
+                    </div>
+                  ) : !showApplyForm ? (
                     <button 
                       className="btn btn-primary" 
                       style={{ width: '100%', padding: '1rem' }}

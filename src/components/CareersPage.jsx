@@ -410,8 +410,8 @@ export default function CareersPage() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', marginTop: '0.2rem' }}>
                           {job.salary && <div className="job-table-salary-sub">{job.salary}</div>}
                           {job.deadline && job.deadline.trim() !== '' && (
-                            <div style={{ fontSize: '0.75rem', color: job.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)' }}>
-                              📅 Apply by: {job.deadline} {job.deadline_completed && ' (Closed)'}
+                            <div style={{ fontSize: '0.75rem', color: (job.deadline_completed === true || job.deadline_completed === 'true' || job.deadline_completed === 1) ? 'var(--accent-orange)' : 'var(--text-muted)' }}>
+                              📅 Apply by: {job.deadline} {(job.deadline_completed === true || job.deadline_completed === 'true' || job.deadline_completed === 1) && ' (Closed)'}
                             </div>
                           )}
                           {job.skills && job.skills.trim() !== '' && (
@@ -430,9 +430,18 @@ export default function CareersPage() {
                       </td>
                       <td className="text-right">
                         <div className="job-row-actions">
-                          {job.deadline_completed ? (
-                            <span style={{ color: 'var(--accent-orange)', fontSize: '0.85rem', fontWeight: 600, paddingRight: '0.5rem' }}>
-                              Closed
+                          {(job.deadline_completed === true || job.deadline_completed === 'true' || job.deadline_completed === 1) ? (
+                            <span className="deadline-completed-badge" style={{
+                              color: 'var(--accent-orange)',
+                              border: '1px solid var(--accent-orange)',
+                              background: 'rgba(255, 87, 34, 0.08)',
+                              padding: '0.35rem 0.75rem',
+                              borderRadius: '20px',
+                              fontSize: '0.75rem',
+                              fontWeight: 600,
+                              whiteSpace: 'nowrap'
+                            }}>
+                              Deadline Completed
                             </span>
                           ) : (
                             <button className="job-table-apply-btn" onClick={(e) => { e.stopPropagation(); handleOpenJob(job, true); }}>
@@ -514,8 +523,8 @@ export default function CareersPage() {
                       <strong>{selectedJob.department}</strong> {selectedJob.salary ? `• ${selectedJob.salary}` : ''}
                     </p>
                     {selectedJob.deadline && selectedJob.deadline.trim() !== '' && (
-                      <p className="drawer-job-deadline" style={{ fontSize: '0.88rem', color: selectedJob.deadline_completed ? 'var(--accent-orange)' : 'var(--text-muted)', marginTop: '0.6rem', fontWeight: 500 }}>
-                        📅 Apply by: {selectedJob.deadline} {selectedJob.deadline_completed && ' (Applications Closed)'}
+                      <p className="drawer-job-deadline" style={{ fontSize: '0.88rem', color: (selectedJob.deadline_completed === true || selectedJob.deadline_completed === 'true' || selectedJob.deadline_completed === 1) ? 'var(--accent-orange)' : 'var(--text-muted)', marginTop: '0.6rem', fontWeight: 500 }}>
+                        📅 Apply by: {selectedJob.deadline} {(selectedJob.deadline_completed === true || selectedJob.deadline_completed === 'true' || selectedJob.deadline_completed === 1) && ' (Applications Closed)'}
                       </p>
                     )}
                   </div>
@@ -572,7 +581,7 @@ export default function CareersPage() {
 
                 {/* Application Section */}
                 <div className="drawer-apply-box">
-                  {selectedJob.deadline_completed ? (
+                  {(selectedJob.deadline_completed === true || selectedJob.deadline_completed === 'true' || selectedJob.deadline_completed === 1) ? (
                     <div className="apply-closed-box" style={{ 
                       border: '1px dashed var(--accent-orange)', 
                       borderRadius: '6px', 

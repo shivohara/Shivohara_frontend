@@ -1338,7 +1338,7 @@ export default function App() {
           {/* ==========================================
                Our Products — Shivohara's Own Products
                ========================================== */}
-          <section className="our-products-section reveal-on-scroll" id="our-products">
+          <section className="our-products-section reveal-on-scroll" id="our-products" ref={productStatsRef}>
             <div className="container">
               <div className="our-products-header">
                 <span className="section-tagline">Built by Shivohara</span>
@@ -1348,7 +1348,7 @@ export default function App() {
 
               {OUR_PRODUCTS.map((product) => (
                 <div className="product-showcase" key={product.id}>
-                  <div className="product-hero-card" ref={productStatsRef}>
+                  <div className="product-hero-card">
                     <div className="product-hero-glow"></div>
                     <div className="product-hero-image-wrap" style={{ backgroundColor: product.imageBackground }}>
                       <img src={product.image} alt={product.title} className="product-hero-img" />

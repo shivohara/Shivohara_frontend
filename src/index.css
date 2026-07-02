@@ -4102,14 +4102,16 @@ select.form-input {
   opacity: 1;
   transform: translateY(0);
   letter-spacing: 0.15em;
+  text-indent: 0.15em; /* Offsets trailing letter-spacing to ensure absolute center alignment */
 }
 
 @media (max-width: 768px) {
   .footer-big-brand {
-    font-size: clamp(3.2rem, 13vw, 6.5rem); /* Substantially larger and bolder on mobile viewports */
+    font-size: clamp(2.5rem, 11vw, 6rem); /* Fits comfortably on narrow screens without overflow cut-off */
   }
   .footer-big-brand.animate-up {
-    letter-spacing: 0.12em; /* Stretches beautifully to span across mobile screens */
+    letter-spacing: 0.1em;
+    text-indent: 0.1em; /* Offsets trailing letter-spacing on mobile viewports */
   }
 }
 

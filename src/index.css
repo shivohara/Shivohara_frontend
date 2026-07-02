@@ -1039,8 +1039,8 @@ section {
 .services-sticky-layout {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  margin-top: 2rem;
+  gap: 1.5rem; /* Reduced gap on mobile for a tighter, cleaner look */
+  margin-top: 1rem;
 }
 
 @media (min-width: 1024px) {
@@ -1048,15 +1048,17 @@ section {
     flex-direction: row;
     align-items: flex-start;
     gap: 5rem;
+    margin-top: 2rem;
   }
 }
 
 .services-sticky-sidebar {
-  flex: 0 0 380px;
+  flex: initial; /* Resets flex height on mobile viewports so it doesn't force a large blank gap */
 }
 
 @media (min-width: 1024px) {
   .services-sticky-sidebar {
+    flex: 0 0 380px; /* Restrict width only on desktop viewports */
     position: sticky;
     top: 120px;
     padding-bottom: 2rem;

@@ -2830,6 +2830,27 @@ section {
   border-bottom: 1px solid var(--border-color);
 }
 
+.product-integrated-stats.desktop-only {
+  display: none;
+}
+
+.product-integrated-stats.mobile-only {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding: 1.5rem 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .product-integrated-stats.desktop-only {
+    display: flex;
+  }
+  
+  .product-integrated-stats.mobile-only {
+    display: none !important;
+  }
+}
+
 .product-integrated-stat-card {
   display: flex;
   flex-direction: column;

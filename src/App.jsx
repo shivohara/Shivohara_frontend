@@ -1348,7 +1348,7 @@ export default function App() {
 
               {OUR_PRODUCTS.map((product) => (
                 <div className="product-showcase" key={product.id}>
-                  <div className="product-hero-card">
+                  <div className="product-hero-card" ref={productStatsRef}>
                     <div className="product-hero-glow"></div>
                     <div className="product-hero-image-wrap" style={{ backgroundColor: product.imageBackground }}>
                       <img src={product.image} alt={product.title} className="product-hero-img" />
@@ -1358,8 +1358,8 @@ export default function App() {
                       <p className="product-tagline-text">{product.tagline}</p>
                       <p className="product-description">{product.description}</p>
                       
-                      {/* Integrated Stats Row with Counting Animation */}
-                      <div className="product-integrated-stats" ref={productStatsRef}>
+                      {/* Integrated Stats Row with Counting Animation - Desktop Only */}
+                      <div className="product-integrated-stats desktop-only">
                         {product.stats.map((stat, i) => (
                           <div className="product-integrated-stat-card" key={i}>
                             <span className="stat-value">{countedStats[`${product.id}-${i}`] || '0'}</span>
@@ -1373,6 +1373,16 @@ export default function App() {
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                       </a>
                     </div>
+                  </div>
+
+                  {/* Integrated Stats Row with Counting Animation - Mobile Only (Rendered under the card) */}
+                  <div className="product-integrated-stats mobile-only">
+                    {product.stats.map((stat, i) => (
+                      <div className="product-integrated-stat-card" key={i}>
+                        <span className="stat-value">{countedStats[`${product.id}-${i}`] || '0'}</span>
+                        <span className="stat-label">{stat.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}

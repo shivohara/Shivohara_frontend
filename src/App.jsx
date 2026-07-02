@@ -211,6 +211,7 @@ export default function App() {
   const teamTrackRef = useRef(null);
   const capabilitiesGridRef = useRef(null);
   const [activeCapabilityIndex, setActiveCapabilityIndex] = useState(0);
+  const [activeEditorialIndex, setActiveEditorialIndex] = useState(0);
 
   // Refs to prevent scroll event fight during programmatic carousel slides
   const isProgrammaticScrollRef = useRef(false);
@@ -285,6 +286,18 @@ export default function App() {
     
     if (newIndex !== activeCapabilityIndex) {
       setActiveCapabilityIndex(newIndex);
+    }
+  };
+
+  const handleEditorialScroll = (e) => {
+    const track = e.currentTarget;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 0) return;
+    const scrollPct = track.scrollLeft / maxScroll;
+    const newIndex = Math.min(2, Math.max(0, Math.round(scrollPct * 2)));
+    
+    if (newIndex !== activeEditorialIndex) {
+      setActiveEditorialIndex(newIndex);
     }
   };
 
@@ -784,9 +797,9 @@ export default function App() {
               </div>
 
               {/* Bottom 3-Column Features Grid */}
-              <div className="editorial-features-grid">
+              <div className="editorial-features-grid" onScroll={handleEditorialScroll}>
 
-                <div className="editorial-feature">
+                <div className={`editorial-feature ${activeEditorialIndex === 0 ? 'active' : ''}`}>
                   <div className="feature-header-wrap">
                     <div className="feature-number">01</div>
                     <div className="feature-icon-ring">
@@ -798,7 +811,7 @@ export default function App() {
                   <p>We build codebases designed to adapt, scale, and thrive under absolute maximum load. Precision engineering from the database to the edge.</p>
                 </div>
 
-                <div className="editorial-feature">
+                <div className={`editorial-feature ${activeEditorialIndex === 1 ? 'active' : ''}`}>
                   <div className="feature-header-wrap">
                     <div className="feature-number">02</div>
                     <div className="feature-icon-ring">
@@ -810,7 +823,7 @@ export default function App() {
                   <p>We don't just add AI; we engineer systems around intelligence workflows. Deep neural integration for predictive and generative capabilities.</p>
                 </div>
 
-                <div className="editorial-feature">
+                <div className={`editorial-feature ${activeEditorialIndex === 2 ? 'active' : ''}`}>
                   <div className="feature-header-wrap">
                     <div className="feature-number">03</div>
                     <div className="feature-icon-ring">

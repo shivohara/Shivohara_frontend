@@ -836,17 +836,38 @@ section {
 }
 
 .editorial-features-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1.25rem;
+  padding-bottom: 2rem;
+  padding-top: 0.5rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-inline: calc(var(--spacing-md, 1.5rem) * -1);
+  padding-inline: var(--spacing-md, 1.5rem);
   position: relative;
   z-index: 2;
 }
 
+.editorial-features-grid::-webkit-scrollbar {
+  display: none;
+}
+
 @media (min-width: 900px) {
   .editorial-features-grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow-x: visible;
+    scroll-snap-type: none;
   }
 }
 
@@ -854,16 +875,44 @@ section {
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  padding: 3rem 2.5rem;
-  border-radius: 24px;
+  padding: 2.5rem 2rem; /* Adjusted for a slightly larger, richer look on mobile */
+  border-radius: 36px; /* Smooth rounded corners matching your layout reference image */
   border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, box-shadow 0.5s ease;
+  flex: 0 0 88vw; /* Increased width to make cards larger in the viewport */
+  scroll-snap-align: center;
+  
+  /* Stacked card appearance on mobile (inactive cards are scaled down and semi-transparent) */
+  transform: scale(0.95); /* Increased scale to keep cards appearing larger */
+  opacity: 0.6;
+  z-index: 1;
 }
 
-.editorial-feature:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.12);
+.editorial-feature.active {
+  /* Center active card scales to 1 and pops in front */
+  transform: scale(1);
+  opacity: 1;
+  z-index: 2;
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 900px) {
+  .editorial-feature {
+    padding: 3rem 2.5rem;
+    border-radius: 24px;
+    flex: initial;
+    scroll-snap-align: initial;
+    transform: none;
+    opacity: 1;
+    z-index: auto;
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .editorial-feature:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .feature-header-wrap {

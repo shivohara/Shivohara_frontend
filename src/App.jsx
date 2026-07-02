@@ -210,6 +210,7 @@ export default function App() {
   const formRef = useRef(null);
   const teamTrackRef = useRef(null);
   const capabilitiesGridRef = useRef(null);
+  const editorialGridRef = useRef(null);
   const [activeCapabilityIndex, setActiveCapabilityIndex] = useState(0);
   const [activeEditorialIndex, setActiveEditorialIndex] = useState(0);
 
@@ -290,6 +291,7 @@ export default function App() {
   };
 
   const handleEditorialScroll = (e) => {
+    if (isProgrammaticScrollRef.current) return;
     const track = e.currentTarget;
     const maxScroll = track.scrollWidth - track.clientWidth;
     if (maxScroll <= 0) return;
@@ -316,6 +318,26 @@ export default function App() {
     scrollTimeoutRef.current = setTimeout(() => {
       isProgrammaticScrollRef.current = false;
     }, 600);
+  };
+
+  const scrollToEditorial = (idx) => {
+    if (!editorialGridRef.current) return;
+    const track = editorialGridRef.current;
+    const cards = track.querySelectorAll('.editorial-feature');
+    if (cards.length > idx) {
+      const card = cards[idx];
+      const targetScroll = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+      
+      isProgrammaticScrollRef.current = true;
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      
+      track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+      setActiveEditorialIndex(idx);
+      
+      scrollTimeoutRef.current = setTimeout(() => {
+        isProgrammaticScrollRef.current = false;
+      }, 600);
+    }
   };
 
   // --- Scroll Timeline Observer Fallback ---
@@ -797,7 +819,7 @@ export default function App() {
               </div>
 
               {/* Bottom 3-Column Features Grid */}
-              <div className="editorial-features-grid" onScroll={handleEditorialScroll}>
+              <div className="editorial-features-grid" ref={editorialGridRef} onScroll={handleEditorialScroll}>
 
                 <div className={`editorial-feature ${activeEditorialIndex === 0 ? 'active' : activeEditorialIndex === 1 ? 'prev-1' : 'prev-2'}`}>
                   <div className="feature-header-wrap">
@@ -835,6 +857,18 @@ export default function App() {
                   <p>From initial abstract design to continuous automated testing, global marketing reach, and zero-downtime deployment pipelines.</p>
                 </div>
 
+              </div>
+
+              {/* Dots indicator for mobile view philosophy grid */}
+              <div className="philosophy-dots">
+                {[0, 1, 2].map((idx) => (
+                  <button
+                    key={idx}
+                    className={`philosophy-dot ${activeEditorialIndex === idx ? 'active' : ''}`}
+                    onClick={() => scrollToEditorial(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </section>

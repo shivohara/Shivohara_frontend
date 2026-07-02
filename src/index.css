@@ -949,6 +949,46 @@ section {
   }
 }
 
+/* Dots indicator for mobile view philosophy grid */
+.philosophy-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+.philosophy-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  opacity: 0.25;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+
+.philosophy-dot:hover {
+  opacity: 0.5;
+}
+
+.philosophy-dot.active {
+  background: var(--accent-violet, #8b5cf6);
+  opacity: 1;
+  width: 20px;
+  border-radius: 4px;
+}
+
+@media (min-width: 900px) {
+  .philosophy-dots {
+    display: none !important;
+  }
+}
+
 .feature-header-wrap {
   display: flex;
   align-items: center;

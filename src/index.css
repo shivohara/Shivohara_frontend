@@ -4106,10 +4106,10 @@ select.form-input {
 
 @media (max-width: 768px) {
   .footer-big-brand {
-    font-size: clamp(1.8rem, 8vw, 4rem);
+    font-size: clamp(3.2rem, 13vw, 6.5rem); /* Substantially larger and bolder on mobile viewports */
   }
   .footer-big-brand.animate-up {
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em; /* Stretches beautifully to span across mobile screens */
   }
 }
 

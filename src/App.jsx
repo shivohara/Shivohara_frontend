@@ -799,7 +799,7 @@ export default function App() {
               {/* Bottom 3-Column Features Grid */}
               <div className="editorial-features-grid" onScroll={handleEditorialScroll}>
 
-                <div className={`editorial-feature ${activeEditorialIndex === 0 ? 'active' : ''}`}>
+                <div className={`editorial-feature ${activeEditorialIndex === 0 ? 'active' : activeEditorialIndex === 1 ? 'prev-1' : 'prev-2'}`}>
                   <div className="feature-header-wrap">
                     <div className="feature-number">01</div>
                     <div className="feature-icon-ring">
@@ -811,7 +811,7 @@ export default function App() {
                   <p>We build codebases designed to adapt, scale, and thrive under absolute maximum load. Precision engineering from the database to the edge.</p>
                 </div>
 
-                <div className={`editorial-feature ${activeEditorialIndex === 1 ? 'active' : ''}`}>
+                <div className={`editorial-feature ${activeEditorialIndex === 1 ? 'active' : activeEditorialIndex === 0 ? 'next-1' : 'prev-1'}`}>
                   <div className="feature-header-wrap">
                     <div className="feature-number">02</div>
                     <div className="feature-icon-ring">
@@ -823,7 +823,7 @@ export default function App() {
                   <p>We don't just add AI; we engineer systems around intelligence workflows. Deep neural integration for predictive and generative capabilities.</p>
                 </div>
 
-                <div className={`editorial-feature ${activeEditorialIndex === 2 ? 'active' : ''}`}>
+                <div className={`editorial-feature ${activeEditorialIndex === 2 ? 'active' : activeEditorialIndex === 1 ? 'next-1' : 'next-2'}`}>
                   <div className="feature-header-wrap">
                     <div className="feature-number">03</div>
                     <div className="feature-icon-ring">

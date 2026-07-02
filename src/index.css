@@ -977,7 +977,7 @@ section {
 }
 
 .philosophy-dot.active {
-  background: var(--accent-violet, #8b5cf6);
+  background: #000000;
   opacity: 1;
   width: 20px;
   border-radius: 4px;
@@ -1435,7 +1435,7 @@ section {
 }
 
 .capability-dot.active {
-  background: var(--accent-violet);
+  background: #000000;
   opacity: 1;
   width: 20px;
   border-radius: 4px;
@@ -3254,7 +3254,7 @@ section {
 }
 
 .team-dot.active {
-  background-color: var(--accent-violet);
+  background-color: #000000;
   width: 24px;
   border-radius: 4px;
 }

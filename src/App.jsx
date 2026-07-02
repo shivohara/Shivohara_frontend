@@ -787,7 +787,7 @@ export default function App() {
             <div className="container" style={{ position: 'relative', zIndex: 2 }}>
 
               {/* Top Editorial Header */}
-              <div className="philosophy-header" style={{ maxWidth: '900px', margin: '0 auto 6rem auto', textAlign: 'center' }}>
+              <div className="philosophy-header" style={{ maxWidth: '900px', margin: '0 auto var(--philosophy-header-margin, 6rem) auto', textAlign: 'center' }}>
                 <h2 className="section-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.1, margin: '1.5rem 0', fontWeight: 500, letterSpacing: '-1.5px', color: '#000' }}>
                   Bridging Pure Innovation<br />and <i style={{ fontStyle: 'italic', fontWeight: 400 }}>Reliability</i>
                 </h2>

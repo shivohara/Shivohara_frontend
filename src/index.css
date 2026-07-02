@@ -681,11 +681,17 @@ li {
    7. Sections Layout general
    ========================================== */
 section {
-  padding-block: var(--spacing-lg) var(--spacing-md);
+  padding-block: var(--spacing-md) var(--spacing-sm);
   position: relative;
 }
 
 @media (min-width: 768px) {
+  section {
+    padding-block: var(--spacing-lg) var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
   section {
     padding-block: var(--spacing-xl) var(--spacing-lg);
   }
@@ -721,6 +727,13 @@ section {
 .philosophy-section {
   position: relative;
   overflow: hidden;
+  --philosophy-header-margin: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .philosophy-section {
+    --philosophy-header-margin: 6rem;
+  }
 }
 
 .tech-circuit {

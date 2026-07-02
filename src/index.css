@@ -3152,12 +3152,18 @@ section {
 }
 
 .team-role-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem; /* Increased from 1.5rem for mobile view visibility */
   font-family: var(--font-heading);
   margin: 0;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+  .team-role-title {
+    font-size: 2.25rem; /* Scales up beautifully on larger viewports */
+  }
 }
 
 .team-desc {

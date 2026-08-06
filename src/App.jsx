@@ -89,6 +89,20 @@ const SERVICES = [
     description: 'Amplify your digital presence. Technical SEO structures, precision search optimization, performance marketing, and analytics setups.',
     features: ['SEO audit & page optimizations', 'Conversion rate analytics', 'Targeted campaign marketing'],
     icon: 'marketing'
+  },
+  {
+    id: 6,
+    title: 'Cybersecurity Services',
+    description: 'Comprehensive, enterprise-grade cybersecurity solutions designed to shield your systems, networks, and data assets from modern threat vectors.',
+    features: [
+      'VAPT & Security Testing',
+      'Network & Firewall Security',
+      'Endpoint Security',
+      'SIEM & Security Monitoring',
+      'Web & Application Security',
+      'Email & Microsoft 365 Security'
+    ],
+    icon: 'security'
   }
 ];
 
@@ -110,6 +124,12 @@ const SERVICE_ICONS = {
   ),
   marketing: (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="m18.7 8-5.1 5.2-2.8-2.7L7 14.3" /></svg>
+  ),
+  security: (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
   )
 };
 
@@ -146,10 +166,10 @@ export default function App() {
         metaDescription.setAttribute('content', 'Explore job opportunities and open career positions at SHIVOHARA. Join our team of experts in custom software development, QA testing, product design, and digital marketing.');
       }
     } else {
-      document.title = 'Shivohara Technologies | Software Development Company';
+      document.title = 'Shivohara Technologies | Software Development & Cybersecurity Company';
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'Shivohara Technologies delivers mobile app development, web development, UI/UX design, and custom software solutions for businesses worldwide.');
+        metaDescription.setAttribute('content', 'Shivohara Technologies delivers mobile app development, web development, UI/UX design, cybersecurity services (VAPT, network, endpoint, SIEM), and custom software solutions for businesses worldwide.');
       }
     }
   }, [view]);
@@ -1586,6 +1606,7 @@ export default function App() {
                           <option value="database">Database &amp; Scale Services</option>
                           <option value="ecommerce">Ecommerce App / Website</option>
                           <option value="marketing">Digital Marketing / SEO</option>
+                          <option value="cybersecurity">Cybersecurity Services</option>
                         </select>
                         <span className="error-msg">Please choose a category.</span>
                       </div>
@@ -1654,6 +1675,7 @@ export default function App() {
                   <li><a href="#scale">Architecture Scale</a></li>
                   <li><a href="#services">Automated Testing</a></li>
                   <li><a href="#services">Digital Marketing</a></li>
+                  <li><a href="#services">Cybersecurity Services</a></li>
                 </ul>
               </div>
 

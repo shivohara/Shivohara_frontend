@@ -139,7 +139,8 @@ const TEAM_MEMBERS = [
   { id: 2, name: "MARUVENI CHARAN", role: "UI/UX Designer", desc: "Crafting intuitive, highly aesthetic digital experiences that bridge the gap between complex engineering and human interaction.", img: "/charan.png" },
   { id: 3, name: "THOLUCHURU SHANMUKHA GANGA MAHESH", role: "Flutter Developer", desc: "Engineering fluid, native-feeling cross-platform mobile applications that perform flawlessly under heavy computational loads.", img: "/mahesh.png" },
   { id: 4, name: "DASIREDDY VISHNU KIRAN REDDY", role: "Frontend Developer", desc: "Building highly interactive, performance-optimized client-side applications using modern component architectures and micro-frontends.", img: "/vishnu.png" },
-  { id: 5, name: "MANE VEDANT", role: "Backend Developer", desc: "Architecting resilient server-side systems, optimizing database query pipelines, and ensuring deep infrastructure security.", img: "/vedant.png" },
+  // Hidden temporarily (retrieve later when needed):
+  // { id: 5, name: "MANE VEDANT", role: "Backend Developer", desc: "Architecting resilient server-side systems, optimizing database query pipelines, and ensuring deep infrastructure security.", img: "/vedant.png" },
   { id: 6, name: "POTHIREDDY VENKATESWARA REDDY", role: "Backend Developer", desc: "Scaling data layers and building ultra-fast APIs to handle massive concurrency without sacrificing data integrity.", img: "/venky.png" }
 ];
 

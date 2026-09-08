@@ -112,7 +112,7 @@ SHIVOHARA Technologies combines cutting-edge Artificial Intelligence with robust
 | Maruveni Charan | UI/UX Designer | Aesthetic digital experiences, interaction design |
 | Tholuchuru Shnmuka Ganga Mahesh | Flutter Developer | Cross-platform mobile apps, high-performance UI |
 | Dasireddy Vishnu Kiran Reddy | Frontend Developer | React, interactive client-side applications |
-| Mane Vedanth | Backend Developer | Server systems, database optimization, security |
+<!-- | Mane Vedanth | Backend Developer | Server systems, database optimization, security | -->
 | Pothireddy Venkateswara Reddy | Backend Developer | Data layers, high-concurrency APIs |
 
 ## Portfolio / Projects
